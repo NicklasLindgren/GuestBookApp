@@ -1,0 +1,29 @@
+<div class="list-group">
+  <form>
+    <div class="form-group">
+      <label for="message">Create New Post Test!</label>
+      <textarea class="form-control"
+             #message
+             (keyup.enter)="addPost(message.value)"
+             message.value=''>
+      </textarea>
+      <button (click)="addPost(message.value)" type="button" class="btn btn-primary">Add</button>
+    </div>
+
+  </form>
+</div>
+
+
+  <p *ngIf="!posts"><em>Loading Posts...</em></p>
+
+  <div class="list-group">
+    <a *ngFor="let post of posts; let id of posts.id;" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ post.message }}</h5>
+        <small>{{ post.createdDate }}</small>
+      </div>
+      <p class="mb-1">{{ post.createdBy }}</p>
+      <small>{{ post.likes}} Likes</small>
+      <button (click)="likePost(id)" type="button" class="btn  btn-xs">Like</button>
+    </a>
+  </div>
